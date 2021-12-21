@@ -5,15 +5,27 @@
   box-sizing: border-box;
 }
 
+:root {
+  --border-color: rgb(180, 180, 180);
+  --light-blue: rgb(74, 116, 255);
+  --light-gray: rgb(242, 242, 242);
+  --light-green: rgb(140, 255, 136);
+  --dark-green: green;
+}
+
 h1 {
+  color: var(--light-blue);
   text-align: center;
+  text-decoration: underline;
 }
 
 .wrapper {
   display: flex;
   flex-flow: column;
   align-items: flex-start;
-  margin: 0 20%;
+  max-width: 750px;
+  margin: 0 auto;
+  overflow-x: auto;
 }
 
 .field {
@@ -28,12 +40,59 @@ h1 {
 }
 
 .field input {
+  font-size: 0.9rem;
   width: 100%;
-  height: 1.75rem;
+  height: 2rem;
   border-radius: 5px;
-  border-width: 1px;
+  border: 1px solid var(--border-color);
 }
 
 .submit-button {
+  background-color: var(--light-blue);
+  color: white;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
   margin-top: 0.5rem;
+  border: none;
+  border-radius: 5px;
+}
+
+#negociacoes-view {
+  margin-top: 2rem;
+}
+
+.table,
+.table th,
+.table td {
+  border: 1px solid var(--border-color);
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table {
+  width: 100%;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: var(--light-gray);
+}
+
+.table th {
+  background-color: var(--light-blue);
+  color: white;
+  text-transform: uppercase;
+  padding: 0.5rem;
+}
+
+.table td {
+  padding: 0.25rem 0.5rem;
+}
+
+.alert {
+  background-color: var(--light-green);
+  color: var(--dark-green);
+  width: 100%;
+  padding: 1rem;
+  margin: 0.5rem 0;
+  border-radius: 5px;
 }
