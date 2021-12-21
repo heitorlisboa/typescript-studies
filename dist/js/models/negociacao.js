@@ -11,4 +11,11 @@ export default class Negociacao {
     get volume() {
         return this.valor * this.quantidade;
     }
+    static criaNegociacao(dataString, quantidadeString, valorString) {
+        const regex = /-/g;
+        const data = new Date(dataString.replace(regex, ","));
+        const quantidade = parseInt(quantidadeString);
+        const valor = parseFloat(valorString);
+        return new Negociacao(data, quantidade, valor);
+    }
 }

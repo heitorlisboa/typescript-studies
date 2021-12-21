@@ -1,6 +1,12 @@
 export default class View {
     constructor(seletor) {
-        this.elemento = document.querySelector(seletor);
+        const elemento = document.querySelector(seletor);
+        if (elemento) {
+            this.elemento = elemento;
+        }
+        else {
+            throw new Error("Elemento não encontrado no DOM!");
+        }
     }
     render(model) {
         this.elemento.innerHTML = this.template(model);
