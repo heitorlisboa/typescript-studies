@@ -10,7 +10,9 @@
   --light-blue: rgb(74, 116, 255);
   --light-gray: rgb(242, 242, 242);
   --light-green: rgb(140, 255, 136);
-  --dark-green: green;
+  --dark-green: rgb(0, 128, 0);
+  --light-red: rgb(250, 125, 125);
+  --dark-red: rgb(135, 0, 0);
 }
 
 h1 {
@@ -95,4 +97,9 @@ h1 {
   padding: 1rem;
   margin: 0.5rem 0;
   border-radius: 5px;
+}
+
+.alert-error {
+  background-color: var(--light-red);
+  color: var(--dark-red);
 }
