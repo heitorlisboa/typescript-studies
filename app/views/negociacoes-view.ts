@@ -1,8 +1,8 @@
-import ListaNegociacoes from "../models/lista-negociacoes";
-import View from "./view";
+import ListaNegociacoes from "../models/lista-negociacoes.js";
+import View from "./view.js";
 
 export default class NegociacoesView extends View<ListaNegociacoes> {
-  template(model: ListaNegociacoes): string {
+  protected template(model: ListaNegociacoes): string {
     return `
     <table class="table">
       <thead>

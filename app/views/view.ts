@@ -8,9 +8,9 @@ export default abstract class View<T> {
     this.elemento = document.querySelector(seletor);
   }
 
-  abstract template(model: T): string;
+  protected abstract template(model: T): string;
 
-  render(model: T): void {
+  public render(model: T): void {
     this.elemento.innerHTML = this.template(model);
   }
 }

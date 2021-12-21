@@ -16,17 +16,16 @@ export default class NegociacaoController {
     this.negociacoesView.render(this.listaNegociacoes);
   }
 
-  adiciona(): void {
+  public adiciona(): void {
     const negociacao = this.criaNegociacao();
     this.listaNegociacoes.adiciona(negociacao);
 
-    // Renderiza as informações adicionadas
+  private atualizaView(): void {
     this.negociacoesView.render(this.listaNegociacoes);
     this.mensagemView.render("Negociação adicionada com sucesso!");
-    this.limpaFormulario();
   }
 
-  criaNegociacao(): Negociacao {
+  private criaNegociacao(): Negociacao {
     const regex = /-/g;
     const data = new Date(this.inputData.value.replace(regex, ","));
     const quantidade = parseInt(this.inputQuantidade.value);
@@ -35,7 +34,7 @@ export default class NegociacaoController {
     return new Negociacao(data, quantidade, valor);
   }
 
-  limpaFormulario(): void {
+  private limpaFormulario(): void {
     this.inputData.value = "";
     this.inputQuantidade.value = "";
     this.inputValor.value = "";
