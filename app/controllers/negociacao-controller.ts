@@ -5,10 +5,15 @@ import MensagemView from "../views/mensagem-view.js";
 import NegociacoesView from "../views/negociacoes-view.js";
 
 export default class NegociacaoController {
-  private inputData: HTMLInputElement = document.querySelector("#data");
-  private inputQuantidade: HTMLInputElement =
-    document.querySelector("#quantidade");
-  private inputValor: HTMLInputElement = document.querySelector("#valor");
+  private inputData: HTMLInputElement = document.querySelector(
+    "#data"
+  ) as HTMLInputElement;
+  private inputQuantidade: HTMLInputElement = document.querySelector(
+    "#quantidade"
+  ) as HTMLInputElement;
+  private inputValor: HTMLInputElement = document.querySelector(
+    "#valor"
+  ) as HTMLInputElement;
   private listaNegociacoes = new ListaNegociacoes();
   private negociacoesView = new NegociacoesView("#negociacoes-view");
   private mensagemView = new MensagemView("#mensagem-view");
@@ -18,7 +23,11 @@ export default class NegociacaoController {
   }
 
   public adiciona(): void {
-    const negociacao = this.criaNegociacao();
+    const negociacao = Negociacao.criaNegociacao(
+      this.inputData.value,
+      this.inputQuantidade.value,
+      this.inputValor.value
+    );
 
     if (!this.ehDiaUtil(negociacao.data)) {
       this.mensagemView.render(
@@ -45,15 +54,6 @@ export default class NegociacaoController {
   private atualizaView(): void {
     this.negociacoesView.render(this.listaNegociacoes);
     this.mensagemView.render("Negociação adicionada com sucesso!");
-  }
-
-  private criaNegociacao(): Negociacao {
-    const regex = /-/g;
-    const data = new Date(this.inputData.value.replace(regex, ","));
-    const quantidade = parseInt(this.inputQuantidade.value);
-    const valor = parseFloat(this.inputValor.value);
-
-    return new Negociacao(data, quantidade, valor);
   }
 
   private limpaFormulario(): void {
