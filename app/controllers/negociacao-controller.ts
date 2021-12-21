@@ -21,6 +21,9 @@ export default class NegociacaoController {
     this.listaNegociacoes.adiciona(negociacao);
     console.log(this.listaNegociacoes.lista);
 
+    // Renderiza as informações adicionadas
+    this.negociacoesView.render(this.listaNegociacoes);
+    this.mensagemView.render("Negociação adicionada com sucesso!");
     this.limpaFormulario();
   }
 
