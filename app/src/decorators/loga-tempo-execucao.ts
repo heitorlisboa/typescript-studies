@@ -1,3 +1,6 @@
+// Um decorator pode ser definido retornando uma função - como no caso abaixo - que será utilizada pela função decorada, assim, podendo passar argumentos para o decorator. Nesse caso, o uso do decorator é @nomeDoDecorator(...argumentos)
+// Outra maneira de definir um decorator está descrita no arquivo "inspeciona.ts"
+// A função retornada deve retornar um descriptor cuja propriedade value deve conter a nova função que será utilizada pela função decorada
 export default function logaTempoExecucao(emSegundos: boolean = false) {
   return function (
     target: any,
