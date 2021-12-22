@@ -1,4 +1,3 @@
-import logaTempoExecucao from "../decorators/loga-tempo-execucao.js";
 import { DiasDaSemana } from "../enums/dias-da-semana.js";
 import ListaNegociacoes from "../models/lista-negociacoes.js";
 import Negociacao from "../models/negociacao.js";
@@ -23,7 +22,6 @@ export default class NegociacaoController {
     this.negociacoesView.render(this.listaNegociacoes);
   }
 
-  @logaTempoExecucao()
   public adiciona(): void {
     const negociacao = Negociacao.criaNegociacao(
       this.inputData.value,
