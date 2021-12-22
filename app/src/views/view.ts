@@ -13,9 +13,9 @@ export default abstract class View<T> {
     }
   }
 
-  protected abstract template(model: T): string;
+  protected abstract template(model: T, ...args: any[]): string;
 
-  public render(model: T): void {
-    this.elemento.innerHTML = this.template(model);
+  public render(model: T, ...args: any[]): void {
+    this.elemento.innerHTML = this.template(model, ...args);
   }
 }

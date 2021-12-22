@@ -10,8 +10,4 @@ export default class MensagemView extends View<string> {
       <p class="alert ${classeAdicional}">${model}</p>
     `;
   }
-
-  public render(model: string, error: boolean = false): void {
-    this.elemento.innerHTML = this.template(model, error)
-  }
 }
