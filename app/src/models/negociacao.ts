@@ -1,6 +1,6 @@
-import Imprimivel from "../interfaces/imprimivel.js";
+import Modelo from "../interfaces/modelo.js";
 
-export default class Negociacao implements Imprimivel {
+export default class Negociacao implements Modelo<Negociacao> {
   // Utilizar as próprias declarações (com public/private/protected) dentro dos parâmetros faz com que o typescript compile o código tanto recebendo os parâmetros como já declarando as propriedades
   constructor(
     private _data: Date,
@@ -37,5 +37,15 @@ export default class Negociacao implements Imprimivel {
 Quantidade: ${this.quantidade}
 Valor: ${this.valor}
 Volume: ${this.volume}`;
+  }
+
+  public ehIgual(negociacao: Negociacao): boolean {
+    return (
+      this.data.getDate() === negociacao.data.getDate() &&
+      this.data.getMonth() === negociacao.data.getMonth() &&
+      this.data.getFullYear() === negociacao.data.getFullYear() &&
+      this.quantidade === negociacao.quantidade &&
+      this.valor === negociacao.valor
+    );
   }
 }

@@ -51,8 +51,16 @@ export default class NegociacaoController {
     this.negociacoesService
       .obterNegociacoesDoDia()
       .then((negociacoesDeHoje) => {
+        return negociacoesDeHoje.filter((negociacao) => {
+          return !this.listaNegociacoes.lista.some((negociacaoRegistrada) =>
+            negociacaoRegistrada.ehIgual(negociacao)
+          );
+        });
+      })
+      .then((negociacoesDeHoje) => {
         for (let negociacao of negociacoesDeHoje) {
           this.listaNegociacoes.adiciona(negociacao);
+        }
 
         if (negociacoesDeHoje.length !== 0) {
           this.atualizaView("Negociações importadas com sucesso!");
