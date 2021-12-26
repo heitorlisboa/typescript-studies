@@ -5,15 +5,12 @@ import MensagemView from "../views/mensagem-view.js";
 import NegociacoesView from "../views/negociacoes-view.js";
 
 export default class NegociacaoController {
-  private inputData: HTMLInputElement = document.querySelector(
-    "#data"
-  ) as HTMLInputElement;
-  private inputQuantidade: HTMLInputElement = document.querySelector(
+  private inputData = document.querySelector("#data") as HTMLInputElement;
+  private inputQuantidade = document.querySelector(
     "#quantidade"
   ) as HTMLInputElement;
-  private inputValor: HTMLInputElement = document.querySelector(
-    "#valor"
-  ) as HTMLInputElement;
+  private inputValor = document.querySelector("#valor") as HTMLInputElement;
+
   private listaNegociacoes = new ListaNegociacoes();
   private negociacoesView = new NegociacoesView("#negociacoes-view");
   private mensagemView = new MensagemView("#mensagem-view");
