@@ -18,4 +18,10 @@ export default class Negociacao {
         const valor = parseFloat(valorString);
         return new Negociacao(data, quantidade, valor);
     }
+    paraTexto() {
+        return `Data: ${this.data}
+Quantidade: ${this.quantidade}
+Valor: ${this.valor}
+Volume: ${this.volume}`;
+    }
 }

@@ -10,11 +10,14 @@ import ListaNegociacoes from "../models/lista-negociacoes.js";
 import NegociacoesView from "../views/negociacoes-view.js";
 import MensagemView from "../views/mensagem-view.js";
 import domInjector from "../decorators/dom-injector.js";
+import NegociacoesService from "../services/negociacoes-service.js";
+import imprime from "../utils/imprime.js";
 export default class NegociacaoController {
     constructor() {
         this.listaNegociacoes = new ListaNegociacoes();
         this.negociacoesView = new NegociacoesView("#negociacoes-view");
         this.mensagemView = new MensagemView("#mensagem-view");
+        this.negociacoesService = new NegociacoesService();
         this.negociacoesView.render(this.listaNegociacoes);
     }
     adiciona() {
@@ -24,17 +27,13 @@ export default class NegociacaoController {
             return;
         }
         this.listaNegociacoes.adiciona(negociacao);
+        imprime(negociacao, this.listaNegociacoes);
         this.atualizaView();
         this.limpaFormulario();
     }
     importaDados() {
-        fetch("http://localhost:8080/dados")
-            .then((res) => res.json())
-            .then((listaDados) => {
-            return listaDados.map((dado) => {
-                return new Negociacao(new Date(), dado.vezes, dado.montante);
-            });
-        })
+        this.negociacoesService
+            .obterNegociacoesDoDia()
             .then((negociacoesDeHoje) => {
             for (let negociacao of negociacoesDeHoje) {
                 this.listaNegociacoes.adiciona(negociacao);
