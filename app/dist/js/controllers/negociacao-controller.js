@@ -28,16 +28,23 @@ export default class NegociacaoController {
         }
         this.listaNegociacoes.adiciona(negociacao);
         imprime(negociacao, this.listaNegociacoes);
-        this.atualizaView();
+        this.atualizaView("Negociação adicionada com sucesso!");
         this.limpaFormulario();
     }
     importaDados() {
         this.negociacoesService
             .obterNegociacoesDoDia()
             .then((negociacoesDeHoje) => {
+            return negociacoesDeHoje.filter((negociacao) => {
+                return !this.listaNegociacoes.lista.some((negociacaoRegistrada) => negociacaoRegistrada.ehIgual(negociacao));
+            });
+        })
+            .then((negociacoesDeHoje) => {
             for (let negociacao of negociacoesDeHoje) {
                 this.listaNegociacoes.adiciona(negociacao);
-                this.atualizaView();
+            }
+            if (negociacoesDeHoje.length !== 0) {
+                this.atualizaView("Negociações importadas com sucesso!");
             }
         });
     }
@@ -46,9 +53,9 @@ export default class NegociacaoController {
         return (dataNegociacao > DiasDaSemana.DOMINGO &&
             dataNegociacao < DiasDaSemana.SABADO);
     }
-    atualizaView() {
+    atualizaView(mensagem) {
         this.negociacoesView.render(this.listaNegociacoes);
-        this.mensagemView.render("Negociação adicionada com sucesso!");
+        this.mensagemView.render(mensagem);
     }
     limpaFormulario() {
         this.inputData.value = "";
