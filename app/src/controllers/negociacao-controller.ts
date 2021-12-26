@@ -43,7 +43,7 @@ export default class NegociacaoController {
 
     this.listaNegociacoes.adiciona(negociacao);
     imprime(negociacao, this.listaNegociacoes);
-    this.atualizaView();
+    this.atualizaView("Negociação adicionada com sucesso!");
     this.limpaFormulario();
   }
 
@@ -54,7 +54,8 @@ export default class NegociacaoController {
         for (let negociacao of negociacoesDeHoje) {
           this.listaNegociacoes.adiciona(negociacao);
 
-          this.atualizaView();
+        if (negociacoesDeHoje.length !== 0) {
+          this.atualizaView("Negociações importadas com sucesso!");
         }
       });
   }
@@ -68,9 +69,9 @@ export default class NegociacaoController {
     );
   }
 
-  private atualizaView(): void {
+  private atualizaView(mensagem: string): void {
     this.negociacoesView.render(this.listaNegociacoes);
-    this.mensagemView.render("Negociação adicionada com sucesso!");
+    this.mensagemView.render(mensagem);
   }
 
   private limpaFormulario(): void {
