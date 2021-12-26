@@ -4,6 +4,7 @@ import ListaNegociacoes from "../models/lista-negociacoes.js";
 import NegociacoesView from "../views/negociacoes-view.js";
 import MensagemView from "../views/mensagem-view.js";
 import domInjector from "../decorators/dom-injector.js";
+import NegociacaoDoDia from "../interfaces/negociacao-do-dia.js";
 
 export default class NegociacaoController {
   @domInjector("#data")
@@ -41,6 +42,23 @@ export default class NegociacaoController {
     this.listaNegociacoes.adiciona(negociacao);
     this.atualizaView();
     this.limpaFormulario();
+  }
+
+  public importaDados(): void {
+    fetch("http://localhost:8080/dados")
+      .then((res) => res.json())
+      .then((listaDados: NegociacaoDoDia[]) => {
+        return listaDados.map((dado) => {
+          return new Negociacao(new Date(), dado.vezes, dado.montante);
+        });
+      })
+      .then((negociacoesDeHoje) => {
+        for (let negociacao of negociacoesDeHoje) {
+          this.listaNegociacoes.adiciona(negociacao);
+
+          this.atualizaView()
+        }
+      });
   }
 
   private ehDiaUtil(data: Date): boolean {
