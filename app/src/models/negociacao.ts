@@ -1,4 +1,6 @@
-export default class Negociacao {
+import Imprimivel from "../interfaces/imprimivel.js";
+
+export default class Negociacao implements Imprimivel {
   // Utilizar as próprias declarações (com public/private/protected) dentro dos parâmetros faz com que o typescript compile o código tanto recebendo os parâmetros como já declarando as propriedades
   constructor(
     private _data: Date,
@@ -28,5 +30,12 @@ export default class Negociacao {
     const valor = parseFloat(valorString);
 
     return new Negociacao(data, quantidade, valor);
+  }
+
+  public paraTexto(): string {
+    return `Data: ${this.data}
+Quantidade: ${this.quantidade}
+Valor: ${this.valor}
+Volume: ${this.volume}`;
   }
 }
