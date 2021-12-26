@@ -1,15 +1,19 @@
 import { DiasDaSemana } from "../enums/dias-da-semana.js";
-import ListaNegociacoes from "../models/lista-negociacoes.js";
 import Negociacao from "../models/negociacao.js";
-import MensagemView from "../views/mensagem-view.js";
+import ListaNegociacoes from "../models/lista-negociacoes.js";
 import NegociacoesView from "../views/negociacoes-view.js";
+import MensagemView from "../views/mensagem-view.js";
+import domInjector from "../decorators/dom-injector.js";
 
 export default class NegociacaoController {
-  private inputData = document.querySelector("#data") as HTMLInputElement;
-  private inputQuantidade = document.querySelector(
-    "#quantidade"
-  ) as HTMLInputElement;
-  private inputValor = document.querySelector("#valor") as HTMLInputElement;
+  @domInjector("#data")
+  private inputData: HTMLInputElement;
+
+  @domInjector("#quantidade")
+  private inputQuantidade: HTMLInputElement;
+
+  @domInjector("#valor")
+  private inputValor: HTMLInputElement;
 
   private listaNegociacoes = new ListaNegociacoes();
   private negociacoesView = new NegociacoesView("#negociacoes-view");
