@@ -10,9 +10,9 @@
   <body>
     <h1>Negociações</h1>
 
-    <div class="wrapper" id="mensagem-view"></div>
+    <div class="main-wrapper" id="mensagem-view"></div>
 
-    <form class="wrapper" data-form>
+    <form class="main-wrapper" data-form>
       <div class="field">
         <label for="data">Data</label>
         <input type="date" id="data" required />
@@ -35,10 +35,13 @@
         />
       </div>
 
-      <button type="submit" class="submit-button">Enviar</button>
+      <div class="row-wrapper">
+        <button type="submit" class="button">Enviar</button>
+        <button type="button" class="button" data-btn="import">Importar</button>
+      </div>
     </form>
 
-    <div class="wrapper" id="negociacoes-view"></div>
+    <div class="main-wrapper" id="negociacoes-view"></div>
 
     <script type="module" src="js/app.js"></script>
   </body>
